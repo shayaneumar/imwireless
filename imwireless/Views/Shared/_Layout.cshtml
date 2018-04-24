@@ -13,13 +13,13 @@
 
     <!-- Comment these scripts out if using the webpack option -->
     <!-- Polyfill(s) for older browsers -->
-    <script src="lib/shim.min.js"></script>
+    @*<script src="lib/shim.min.js"></script>
     <script src="lib/zone.js"></script>
     <script src="lib/system.src.js"></script>
     <script src="systemjs.config.js"></script>
     <script>
       System.import('app').catch(function(err){ console.error(err); });
-    </script>
+    </script>*@
 
 </head>
 <body>
@@ -46,7 +46,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            Created by <a href="http://twitter.com/DanWahlin" target="_blank">@@DanWahlin</a>
+                           Footer goes here
                         </div>
                     </div>
                 </div>
@@ -57,13 +57,15 @@
     <form asp-antiforgery="true"></form>
 
 
-    <!-- 
-        If using webpack and AOT comment out system.js 
+    <!--
+        If using webpack and AOT comment out system.js
         scripts in head and add bundle scripts from webpack
-        here.        
+        here.
     -->
-    <!-- <script type="text/javascript" src="/dist/polyfills.js"></script>
-    <script type="text/javascript" src="/dist/vendor.js"></script>
-    <script type="text/javascript" src="/dist/app.js"></script> -->
+    <script src="~/ClientApp/dist/inline.bundle.js"></script>
+    <script src="~/ClientApp/dist/polyfills.bundle.js"></script>
+    <script src="~/ClientApp/dist/styles.bundle.js"></script>
+    <script src="~/ClientApp/dist/vendor.bundle.js"></script>
+    <script src="~/ClientApp/dist/main.bundle.js"></script>
 </body>
 </html>
