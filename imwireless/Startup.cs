@@ -31,11 +31,22 @@ namespace imwireless
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //Add PostgreSQL support
+
             services.AddDbContext<CustomersDbContext>(options =>
             {
-                options.UseNpgsql(Configuration.GetConnectionString("CustomersPostgresConnectionString"));
+                if (Configuration.GetValue<bool>("simulation"))
+                {
+                    options.UseInMemoryDatabase("Customers");
+                }
+                else
+                {
+                    //Add PostgreSQL support
+                    options.UseNpgsql(Configuration.GetConnectionString("CustomersPostgresConnectionString"));
+                }
+                
             });
+
+            var simulation = Configuration.GetValue<bool>("simulation");
 
             services.AddScoped<ICustomersRepository, CustomersRepository>();
             services.AddScoped<IStatesRepository, StatesRepository>();
